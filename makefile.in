@@ -1,0 +1,64 @@
+# To use this makefile the path for "$(FEAPHOME8_1)" must be set using
+# setenv FEAPHOME8_1 = /.... (with information after the slash definign
+# the path where the feap directories reside. 
+
+  FEAPHOME8_1 = /home/jp/proj/feap/code/ver81
+
+# Set include file type to use: integer4 for 32 bit machines
+#                               integer8 for 64 bit machines
+# Use of integer8 files sets pointers to be integer*8 and all other
+# integers to be integer*4.
+
+# Use of integer4 files sets all integers (including pointers) to be
+# integer*4.
+
+# N.B. If a compiler option is used that sets ALL integers to be
+#      integer*8, it is necessary to reset the parameter 'ipr = 1'
+#      in file 'feap81.f' located in the 'main' directory.
+#------------------------------------------------------------------------
+# Location of feap include files
+#  FINCLUDE = $(FEAPHOME8_1)/include -I$(FEAPHOME8_1)/include/integer4
+  FINCLUDE = $(FEAPHOME8_1)/include -I$(FEAPHOME8_1)/include/integer8
+# CINCLUDE = /usr/X11R6/include
+
+# Which compilers to use (Set to compiler names available on your
+# computer)
+# FF = /usr/local/bin/gfortran
+# CC = /usr/local/bin/gcc
+  FF = gfortran
+  CC = gcc
+
+# What optimization level to use
+#  FFOPTFLAG = -O2 -Wall
+#  CCOPTFLAG = -O2 -Wall
+  FFOPTFLAG = -g -ffpe-trap=invalid,zero
+  CCOPTFLAG = -g
+
+# Source Types (If you will be doing a NO RCS installation comment
+# the next two lines and uncomment the two after them).
+#  FSOURCE = RCS/
+#  CSOURCE = RCS/
+   FSOURCE = 
+   CSOURCE = 
+
+# Source Extender (If you will be doing a NO RCS installation comment
+# the next two lines and uncomment the two after them).
+#  FEXT = f,v
+#  CEXT = c,v
+   FEXT = f
+   CEXT = c
+
+# What options to be used by the compiler
+  FOPTIONS =
+  COPTIONS =
+
+# What options to be used by the loader (Set to the location of your
+# X11 librarys; leave the -lm at the end oto load the math librarys).
+  LDOPTIONS = -L/usr/X11R6/lib   -lX11 -lm
+# LDOPTIONS = -L/usr/X11R6/lib64 -lX11 -lm
+
+# What archiving to use
+  AR = ar rv
+
+# Archive name.
+  ARFEAP = $(FEAPHOME8_1)/Feap8_1.a
