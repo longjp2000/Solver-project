@@ -107,7 +107,7 @@ c     Set variable types
       include 'setups.h'
       include 'vdata.h'
       
-      iii=1
+      iii=-1
 
       do while( iii .ge. 0)
          lll = 0
